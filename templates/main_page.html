@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Toolbox Pentest</title>
+</head>
+<body>
+
+<h1>Toolbox de Pentest Automatisée</h1>
+
+<form method="POST">
+    <fieldset>
+        <legend>Cible</legend>
+        <input type="text" name="target" placeholder="IP ou nom de domaine" required>
+    </fieldset>
+
+    <fieldset>
+        <legend>Tests à lancer</legend>
+
+        <label>
+            <input type="checkbox" name="scan_nmap">
+            Scan Nmap
+        </label><br>
+
+        <label>
+            <input type="checkbox" name="scan_nikto">
+            Scan Nikto
+        </label><br>
+
+        <label>
+            <input type="checkbox" name="scan_sqlmap">
+            Test SQLMap
+        </label>
+    </fieldset>
+
+    <br>
+    <button type="submit">Lancer les tests</button>
+</form>
+
+<hr>
+
+{% if target %}
+    <h2>Récapitulatif</h2>
+    <p><strong>Cible :</strong> {{ target }}</p>
+
+    {% if scans %}
+        <p><strong>Scans sélectionnés :</strong></p>
+        <ul>
+            {% for scan in scans %}
+                <li>{{ scan }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endif %}
+
+{% if results %}
+    <hr>
+    <h2>Résultats</h2>
+
+    {% for tool, output in results.items() %}
+        <h3>{{ tool }}</h3>
+        <pre>{{ output }}</pre>
+    {% endfor %}
+{% endif %}
+
+</body>
+</html>
