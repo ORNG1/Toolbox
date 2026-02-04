@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Hydra</title>
+</head>
+<body>
+
+<h1>Outil hydra</h1>
+
+<form method="POST">
+    <fieldset>
+        <legend>Cible</legend>
+        <input type="text" name="target" placeholder="IP ou nom d'hôte" required>
+    </fieldset>
+
+    <fieldset>
+        <legend>Options Hydra</legend>
+        <label><input type="checkbox" name="hydra_ssh"> SSH brute-force</label><br>
+        <label><input type="checkbox" name="hydra_ftp"> FTP brute-force</label><br>
+        <label><input type="checkbox" name="hydra_http_form"> HTTP Form Auth (formulaires web)</label><br>
+        <label><input type="checkbox" name="hydra_enum_users"> Énumération de comptes/utilisateurs</label>  
+    </fieldset>
+
+    <button type="submit">Lancer les tests</button>
+</form>
+</body>
+</html>

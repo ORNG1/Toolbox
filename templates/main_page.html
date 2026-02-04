@@ -8,34 +8,21 @@
 
 <h1>Toolbox de Pentest Automatisée</h1>
 
-<form method="POST">
-    <fieldset>
-        <legend>Cible</legend>
-        <input type="text" name="target" placeholder="IP ou nom de domaine" required>
-    </fieldset>
+<nav>
+    <ul>
+        <li><a href="/nmap">Nmap — Reconnaissance &amp; Scan réseau</a></li>
+        <li><a href="/nikto">Nikto — Vérification de serveur Web</a></li>
+        <li><a href="/sqlmap">SQLMap — Tests d'injection SQL</a></li>
+        <li><a href="/hydra">Hydra — Brute-force en ligne</a></li>
+        <li><a href="/john">John the Ripper — Crackage de hash</a></li>
+    </ul>
+</nav>
 
-    <fieldset>
-        <legend>Tests à lancer</legend>
+<p>Choisissez un outil ci‑dessous pour accéder à sa page dédiée.</p>
 
-        <label>
-            <input type="checkbox" name="scan_nmap">
-            Scan Nmap
-        </label><br>
-
-        <label>
-            <input type="checkbox" name="scan_nikto">
-            Scan Nikto
-        </label><br>
-
-        <label>
-            <input type="checkbox" name="scan_sqlmap">
-            Test SQLMap
-        </label>
-    </fieldset>
-
-    <br>
-    <button type="submit">Lancer les tests</button>
-</form>
+<footer>
+    <p>Voir le dépôt GitHub du projet : <a href="https://github.com/ORNG1/Toolbox" target="_blank" rel="noopener">Automated Toolbox</a></p>
+</footer>
 
 <hr>
 

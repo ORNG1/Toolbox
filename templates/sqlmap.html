@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SQLMap</title>
+</head>
+<body>
+
+<h1>Outil SQLMap</h1>
+
+<form method="POST">
+    <fieldset>
+        <legend>Cible</legend>
+        <input type="text" name="target" placeholder="IP ou nom d'hôte" required>
+    </fieldset>
+
+    <fieldset>
+        <legend>Options SQLMap</legend>
+        <label><input type="checkbox" name="sqlmap_level"> Niveau d'injection élevé</label><br>
+        <label><input type="checkbox" name="sqlmap_risk"> Risque d'injection accru</label><br>
+        <label><input type="checkbox" name="sqlmap_techniques"> Techniques d'injection spécifiques (UNION, ERROR, etc.)</label><br>
+        <label><input type="checkbox" name="sqlmap_os_shell"> Accès shell OS si vulnérable</label>
+    </fieldset>
+
+    <button type="submit">Lancer les tests</button>
+</form>
+</body>
+</html>

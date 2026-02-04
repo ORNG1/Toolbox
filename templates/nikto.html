@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Nikto</title>
+</head>
+<body>
+
+<h1>Outil Nikto</h1>
+
+<form method="POST">
+    <fieldset>
+        <legend>Cible</legend>
+        <input type="text" name="target" placeholder="IP ou nom d'hôte" required>
+    </fieldset>
+
+    <fieldset>
+        <legend>Options Nikto</legend>
+        <label><input type="checkbox" name="nikto_standard"> Scan standard (CGI, fichiers dangereux)</label><br>
+        <label><input type="checkbox" name="nikto_ssl"> Scan SSL/TLS (certificat &amp; protocoles)</label><br>
+        <label><input type="checkbox" name="nikto_dirs"> Énumération de répertoires sensibles</label><br>
+        <label><input type="checkbox" name="nikto_tuning"> Tuning spécifique (XSS / Upload)</label>
+    </fieldset>
+
+    <button type="submit">Lancer les tests</button>
+</form>
+</body>
+</html>

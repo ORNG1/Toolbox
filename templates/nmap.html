@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Nmap</title>
+</head>
+<body>
+
+<h1>Outil nmap</h1>
+
+<form method="POST">
+    <fieldset>
+        <legend>Cible</legend>
+        <input type="text" name="target" placeholder="IP ou nom d'hôte" required>
+    </fieldset>
+
+    <fieldset>
+        <legend>Options Nmap</legend>
+        <label><input type="checkbox" name="nmap_quick"> Scan rapide (Top 100 ports)</label><br>
+        <label><input type="checkbox" name="nmap_service_os"> Scan de services &amp; OS</label><br>
+        <label><input type="checkbox" name="nmap_full_tcp"> Scan complet (Full TCP - 65535 ports)</label><br>
+        <label><input type="checkbox" name="nmap_nse"> Audit de scripts (NSE)</label>
+    </fieldset>
+    
+    <button type="submit">Lancer les tests</button>
+</form>
+</body>
+</html>

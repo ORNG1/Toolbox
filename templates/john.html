@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>John The Ripper</title>
+</head>
+<body>
+
+<h1>Outil John The Ripper</h1>
+
+<form method="POST">
+    <fieldset>
+        <legend>Cible</legend>
+        <input type="text" name="target" placeholder="IP ou nom d'hôte" required>
+    </fieldset>
+
+    <fieldset>
+        <legend>Options John The Ripper</legend>
+        <label><input type="checkbox" name="john_single"> Mode Single (utilise les informations de l'utilisateur)</label><br>
+        <label><input type="checkbox" name="john_wordlist"> Utilisation de dictionnaire (wordlist)</label><br>
+        <label><input type="checkbox" name="john_incremental"> Mode Incrémental (attaque exhaustive)</label><br>
+        <label><input type="checkbox" name="john_rules"> Application de règles (modifications de mots)</label>
+    </fieldset>
+
+    <button type="submit">Lancer les tests</button>
+</form>
+</body>
+</html> 
