@@ -1,10 +1,32 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import subprocess
+import os
+from functools import wraps
+from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 
+# Secret key for session. In production, set SECRET_KEY env var.
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret")
+
 # When False, commands will not actually be executed — they are shown as dry-runs.
 RUN_COMMANDS = False
+
+# Simple user store (no DB). For multi-user or persistent storage, use a DB.
+# Default admin password can be set with env var TOOLBOX_ADMIN_PW (default: 'admin').
+USERS = {
+    "admin": generate_password_hash(os.environ.get("TOOLBOX_ADMIN_PW", "admin"))
+}
+
+
+def login_required(view):
+    @wraps(view)
+    def wrapped_view(*args, **kwargs):
+        if not session.get("logged_in"):
+            return redirect(url_for("login_page", next=request.path))
+        return view(*args, **kwargs)
+
+    return wrapped_view
 
 
 def run_subprocess(command):
@@ -88,6 +110,7 @@ def run_john(single=False, dictionary=False, incremental=False, audit=False):
 
 
 @app.route("/", methods=["GET", "POST"])
+@login_required
 def index():
     target = None
     selected_scans = []
@@ -181,6 +204,58 @@ def index():
         scans=selected_scans,
         results=scan_results,
     )
+
+
+@app.route("/nmap")
+@login_required
+def nmap_page():
+    return render_template("nmap.html")
+
+
+@app.route("/nikto")
+@login_required
+def nikto_page():
+    return render_template("nikto.html")
+
+
+@app.route("/sqlmap")
+@login_required
+def sqlmap_page():
+    return render_template("sqlmap.html")
+
+
+@app.route("/hydra")
+@login_required
+def hydra_page():
+    return render_template("hydra.html")
+
+
+@app.route("/john")
+@login_required
+def john_page():
+    return render_template("john.html")
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login_page():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        user_hash = USERS.get(username)
+        if user_hash and check_password_hash(user_hash, password):
+            session['logged_in'] = True
+            session['username'] = username
+            next_page = request.args.get('next') or url_for('index')
+            return redirect(next_page)
+        flash('Identifiants invalides', 'error')
+
+    return render_template('login.html')
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login_page'))
 
 
 if __name__ == "__main__":

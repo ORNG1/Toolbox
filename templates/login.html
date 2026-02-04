@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Login - Toolbox</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+  <h1>Connexion</h1>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul>
+        {% for category, message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <form method="post" action="{{ url_for('login_page') }}">
+    <label>Utilisateur: <input type="text" name="username" required></label><br>
+    <label>Mot de passe: <input type="password" name="password" required></label><br>
+    <button type="submit">Se connecter</button>
+  </form>
+
+</div>
+</body>
+</html>
